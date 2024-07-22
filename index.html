@@ -39,7 +39,7 @@
         </header>
 
         <main>
-            <nav class="nav-container active">
+            <nav class="nav-container">
                 <div class="nav-icons-container">
                     <button><i class="fa-solid fa-inbox"></i> Inbox</button>
                     <button>
@@ -50,14 +50,73 @@
                     </button>
                 </div>
             </nav>
+
             <div class="projects-container">
                 <h2>Projects</h2>
                 <button id="add-project">
                     <i class="fa-solid fa-plus"></i>Add Project
                 </button>
             </div>
-            <div class="new-project-container">
-                <input type="text" />
+
+            <!-- New projects div -->
+            <div class="new-project-container active">
+                <div class="project-item project-item-title">
+                    <input
+                        type="text"
+                        id="title"
+                        placeholder="Project Name ..."
+                        name="title"
+                    />
+                    <button>
+                        <i class="fa-solid fa-xmark"></i>
+                    </button>
+                </div>
+                <div class="project-item project-item-description">
+                    <input
+                        type="text"
+                        id="description"
+                        placeholder="Description ..."
+                        name="description"
+                    />
+                    <button>
+                        <i class="fa-solid fa-xmark"></i>
+                    </button>
+                </div>
+                <!-- <div class="project-item project-item-due-date">
+                    <input
+                        type="date"
+                        id="due-date"
+                        placeholder="Project Name ..."
+                        name="due-date"
+                    />
+                    <button>
+                        <i class="fa-solid fa-xmark"></i>
+                    </button>
+                </div> -->
+                <div class="project-item-priority">
+                    <div class="priority-container">
+                        <p>Priority:</p>
+                        <div>
+                            <label for="priority-yes">Yes</label>
+                            <input
+                                type="radio"
+                                id="priority-yes"
+                                name="priority"
+                            />
+                        </div>
+                        <div>
+                            <label for="priority-no">No</label>
+                            <input
+                                type="radio"
+                                id="priority-no"
+                                name="priority"
+                            />
+                        </div>
+                    </div>
+                    <button>
+                        <i class="fa-solid fa-xmark"></i>
+                    </button>
+                </div>
 
                 <button id="add-new-project">Add</button>
                 <button id="cancel-btn">Cancel</button>

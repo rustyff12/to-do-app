@@ -7,25 +7,28 @@
 }
 
 :root {
-    --main-light: #2f4765;
-    --main-medium: #1c2a3b;
-    --main-dark: #131e2a;
+    --main-light: #c88d4e;
+    --main-medium: #9f6e3b;
+    --main-dark: #614422;
 
-    --accent-light: #33a9ff;
-    --accent-medium: #008ef5;
-    --accent-dark: #0071c3;
+    --secondary-light: #2f4765;
+    --secondary-medium: #033160;
+    --secondary-dark: #131e2a;
+
+    --accent-light: #ffffff;
+    --accent-medium: #c6dbea;
+    --accent-dark: #d3cece;
 
     --warning-light: #fac661;
     --warning-medium: #fac661;
     --warning-dark: #fac661;
-    --warning-dark: hsl(40, 94%, 68%);
 
     --positive-light: #35df90;
     --positive-medium: #1db872;
     --positive-dark: #188e58;
 
     --negative-light: #f47961;
-    --negative-medium: #ec4f30;
+    --negative-medium: #ee3814;
     --negative-dark: #d52e0f;
 
     --white: #ffffff;
@@ -39,13 +42,19 @@ body {
     background-color: var(--main-light);
 }
 
+button {
+    cursor: pointer;
+}
+
 /* Header */
 header {
+    /* background-color: var(--main-dark); */
     background-color: var(--main-dark);
     padding: 1rem;
     display: flex;
     align-items: center;
     justify-content: space-between;
+    height: 13vh;
 }
 
 .header-logo {
@@ -85,7 +94,6 @@ header {
     display: none;
     width: 100%;
     background-color: var(--main-medium);
-    transition: 0.7s ease;
 }
 
 .nav-container.active {
@@ -102,7 +110,9 @@ header {
 
 .nav-icons-container > button,
 .projects-container > button,
-.new-project-container > button {
+.new-project-container > button,
+.project-item > button,
+.project-item-priority > button {
     border: none;
     border-radius: 5px;
     background-color: var(--main-light);
@@ -116,15 +126,15 @@ header {
 }
 
 .nav-icons-container > button:focus {
-    background-color: var(--accent-dark);
-    color: var(--white);
+    background-color: var(--accent-light);
+    color: var(--main-dark);
 }
 
 /* Main content */
 
 .projects-container > h2 {
     text-decoration: underline;
-    color: var(--main-dark);
+    color: var(--white);
     font-weight: 700;
 }
 
@@ -133,16 +143,43 @@ header {
 }
 
 .new-project-container {
+    display: none;
     background-color: var(--main-medium);
+}
+
+.new-project-container.active {
     padding: 1rem;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: repeat(2, 1fr);
+    grid-template-rows: repeat(4, 1fr);
     gap: 1rem;
 }
 
-.new-project-container > input {
+.project-item-title {
     grid-area: 1 / 1 / 2 / 3;
+}
+
+.project-item-description {
+    grid-area: 2 / 1 / 3 / 3;
+}
+
+/* .project-item-due-date {
+    grid-area: 3 / 1 / 4 / 3;
+} */
+
+.project-item-priority {
+    grid-area: 3 / 1 / 4 / 3;
+}
+
+.project-item,
+.project-item-priority {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.project-item > input,
+.priority-container {
     border: none;
     border-radius: 5px;
     padding: 0.5rem;
@@ -150,22 +187,99 @@ header {
     justify-content: start;
     font-size: 1rem;
     background-color: var(--main-light);
+    color: var(--main-dark);
+    width: 80%;
 }
 
-.new-project-container > input:focus {
+.priority-container {
+    justify-content: space-between;
+    font-weight: 700;
+}
+
+.priority-container > div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.project-item > input:focus {
     background-color: var(--accent-dark);
+}
+
+.project-item > button,
+.project-item-priority > button {
+    background-color: var(--main-medium);
+    font-size: 1.2rem;
+}
+
+#title::placeholder,
+#description::placeholder,
+#due-date {
+    color: var(--main-dark);
+    font-weight: 700;
 }
 
 .new-project-container > #add-new-project {
-    background-color: var(--accent-dark);
-    color: var(--main-dark);
+    background-color: var(--main-dark);
+    color: var(--white);
     font-weight: 700;
-    grid-area: 2 / 1 / 3 / 2;
+    grid-area: 4 / 1 / 5 / 2;
 }
 
 .new-project-container > #cancel-btn {
-    background-color: var(--negative-light);
-    color: var(--main-dark);
+    background-color: var(--negative-medium);
+    color: var(--white);
     font-weight: 700;
-    grid-area: 2 / 2 / 3 / 3;
+    grid-area: 4 / 2 / 5 / 3;
+}
+
+#add-project.hidden {
+    display: none;
+}
+
+@media screen and (min-width: 640px) {
+    .button-menu {
+        display: none;
+    }
+
+    main {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        grid-template-rows: repeat(3, 1fr);
+        min-height: calc(100vh - 13vh);
+    }
+
+    .nav-container {
+        display: block;
+        grid-area: 1 / 1 / 4 / 2;
+    }
+
+    .projects-container {
+        grid-column: 2 / 4;
+    }
+
+    .new-project-container.active {
+        grid-area: 2 / 1 / 4 / 2;
+        padding: 1rem;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: repeat(4, 1fr);
+        gap: 0.3rem;
+    }
+
+    .project-item > input,
+    .priority-container {
+        font-size: 0.8rem;
+    }
+
+    .priority-container > div {
+        gap: 5px;
+    }
+
+    #add-new-project,
+    #cancel-btn {
+        /* height: 50%; */
+        align-self: center;
+    }
 }
