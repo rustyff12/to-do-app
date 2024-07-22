@@ -53,6 +53,15 @@
 
             <div class="projects-container">
                 <h2>Projects</h2>
+                <div class="project-info">
+                    <button class="project-info-details">
+                        <i class="fa-solid fa-list-check"></i>
+                    </button>
+                    <p class="project-title">New Project</p>
+                    <button class="project-info-close">
+                        <i class="fa-solid fa-xmark"></i>
+                    </button>
+                </div>
                 <button id="add-project">
                     <i class="fa-solid fa-plus"></i>Add Project
                 </button>
@@ -71,6 +80,7 @@
                         <i class="fa-solid fa-xmark"></i>
                     </button>
                 </div>
+
                 <div class="project-item project-item-description">
                     <input
                         type="text"
@@ -82,17 +92,7 @@
                         <i class="fa-solid fa-xmark"></i>
                     </button>
                 </div>
-                <!-- <div class="project-item project-item-due-date">
-                    <input
-                        type="date"
-                        id="due-date"
-                        placeholder="Project Name ..."
-                        name="due-date"
-                    />
-                    <button>
-                        <i class="fa-solid fa-xmark"></i>
-                    </button>
-                </div> -->
+
                 <div class="project-item-priority">
                     <div class="priority-container">
                         <p>Priority:</p>
@@ -122,6 +122,6 @@
                 <button id="cancel-btn">Cancel</button>
             </div>
         </main>
-        <script src="./assets/js/dom.js"></script>
+        <script src="./assets/js/index.js" type="module"></script>
     </body>
 </html>
