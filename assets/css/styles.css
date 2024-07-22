@@ -18,6 +18,7 @@
     --warning-light: #fac661;
     --warning-medium: #fac661;
     --warning-dark: #fac661;
+    --warning-dark: hsl(40, 94%, 68%);
 
     --positive-light: #35df90;
     --positive-medium: #1db872;
@@ -26,4 +27,145 @@
     --negative-light: #f47961;
     --negative-medium: #ec4f30;
     --negative-dark: #d52e0f;
+
+    --white: #ffffff;
+
+    --filter: brightness(0) saturate(100%) invert(100%) sepia(0%) saturate(0%)
+        hue-rotate(180deg) brightness(100%) contrast(100%);
+}
+
+body {
+    font-family: "Roboto", sans-serif;
+    background-color: var(--main-light);
+}
+
+/* Header */
+header {
+    background-color: var(--main-dark);
+    padding: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.header-logo {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.header-logo > img {
+    width: 50px;
+    filter: var(--filter);
+}
+
+.header-logo > h1 {
+    color: var(--accent-light);
+}
+
+.button-menu {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.button-menu > button {
+    background-color: var(--main-dark);
+    border: none;
+    cursor: pointer;
+}
+
+.button-menu > button > i {
+    font-size: 35px;
+    color: var(--accent-light);
+}
+
+/* Nav */
+.nav-container {
+    display: none;
+    width: 100%;
+    background-color: var(--main-medium);
+    transition: 0.7s ease;
+}
+
+.nav-container.active {
+    display: block;
+}
+
+.nav-icons-container,
+.projects-container {
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.nav-icons-container > button,
+.projects-container > button,
+.new-project-container > button {
+    border: none;
+    border-radius: 5px;
+    background-color: var(--main-light);
+    padding: 0.5rem;
+    display: flex;
+    justify-content: start;
+    gap: 1rem;
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--accent-light);
+}
+
+.nav-icons-container > button:focus {
+    background-color: var(--accent-dark);
+    color: var(--white);
+}
+
+/* Main content */
+
+.projects-container > h2 {
+    text-decoration: underline;
+    color: var(--main-dark);
+    font-weight: 700;
+}
+
+.projects-container > button {
+    background-color: var(--main-medium);
+}
+
+.new-project-container {
+    background-color: var(--main-medium);
+    padding: 1rem;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    gap: 1rem;
+}
+
+.new-project-container > input {
+    grid-area: 1 / 1 / 2 / 3;
+    border: none;
+    border-radius: 5px;
+    padding: 0.5rem;
+    display: flex;
+    justify-content: start;
+    font-size: 1rem;
+    background-color: var(--main-light);
+}
+
+.new-project-container > input:focus {
+    background-color: var(--accent-dark);
+}
+
+.new-project-container > #add-new-project {
+    background-color: var(--accent-dark);
+    color: var(--main-dark);
+    font-weight: 700;
+    grid-area: 2 / 1 / 3 / 2;
+}
+
+.new-project-container > #cancel-btn {
+    background-color: var(--negative-light);
+    color: var(--main-dark);
+    font-weight: 700;
+    grid-area: 2 / 2 / 3 / 3;
 }

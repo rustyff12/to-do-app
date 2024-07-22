@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Todo App</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+            rel="stylesheet"
+        />
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+            integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+            crossorigin="anonymous"
+            referrerpolicy="no-referrer"
+        />
+        <!-- <link rel="stylesheet" href="./assets/css/normalize.css" /> -->
+        <link rel="stylesheet" href="./assets/css/styles.css" />
+    </head>
+    <body>
+        <header>
+            <div class="header-logo">
+                <img
+                    src="./assets/icons/check-all.svg"
+                    alt="To do app logo"
+                    class="logo-image"
+                />
+                <h1>Todo List</h1>
+            </div>
+
+            <div class="button-menu">
+                <button id="menu-btn">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+            </div>
+        </header>
+
+        <main>
+            <nav class="nav-container active">
+                <div class="nav-icons-container">
+                    <button><i class="fa-solid fa-inbox"></i> Inbox</button>
+                    <button>
+                        <i class="fa-solid fa-calendar-day"></i> Today
+                    </button>
+                    <button>
+                        <i class="fa-solid fa-calendar-week"></i> Week
+                    </button>
+                </div>
+            </nav>
+            <div class="projects-container">
+                <h2>Projects</h2>
+                <button id="add-project">
+                    <i class="fa-solid fa-plus"></i>Add Project
+                </button>
+            </div>
+            <div class="new-project-container">
+                <input type="text" />
+
+                <button id="add-new-project">Add</button>
+                <button id="cancel-btn">Cancel</button>
+            </div>
+        </main>
+        <script src="./assets/js/dom.js"></script>
+    </body>
+</html>
