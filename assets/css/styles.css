@@ -1,0 +1,29 @@
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --main-light: #2f4765;
+    --main-medium: #1c2a3b;
+    --main-dark: #131e2a;
+
+    --accent-light: #33a9ff;
+    --accent-medium: #008ef5;
+    --accent-dark: #0071c3;
+
+    --warning-light: #fac661;
+    --warning-medium: #fac661;
+    --warning-dark: #fac661;
+
+    --positive-light: #35df90;
+    --positive-medium: #1db872;
+    --positive-dark: #188e58;
+
+    --negative-light: #f47961;
+    --negative-medium: #ec4f30;
+    --negative-dark: #d52e0f;
+}
