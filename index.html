@@ -23,11 +23,7 @@
     <body>
         <header>
             <div class="header-logo">
-                <img
-                    src="./assets/icons/check-all.svg"
-                    alt="To do app logo"
-                    class="logo-image"
-                />
+                <i class="fa-solid fa-circle-check"></i>
                 <h1>Todo List</h1>
             </div>
 
@@ -41,7 +37,7 @@
         <main>
             <nav class="nav-container">
                 <div class="nav-icons-container">
-                    <button><i class="fa-solid fa-inbox"></i> Inbox</button>
+                    <button><i class="fa-solid fa-inbox"></i> Projects</button>
                     <button>
                         <i class="fa-solid fa-calendar-day"></i> Today
                     </button>
@@ -53,22 +49,27 @@
 
             <div class="projects-container">
                 <h2>Projects</h2>
-                <div class="project-info">
-                    <button class="project-info-details">
-                        <i class="fa-solid fa-list-check"></i>
-                    </button>
-                    <p class="project-title">New Project</p>
-                    <button class="project-info-close">
-                        <i class="fa-solid fa-xmark"></i>
-                    </button>
-                </div>
+                <ul>
+                    <li>
+                        <div class="project-info" id="1">
+                            <button class="project-info-details">
+                                <i class="fa-solid fa-list-check"></i>
+                            </button>
+                            <p class="project-title">New Project</p>
+                            <p class="project-description">Description</p>
+                            <button class="project-info-close">
+                                <i class="fa-solid fa-xmark"></i>
+                            </button>
+                        </div>
+                    </li>
+                </ul>
                 <button id="add-project">
                     <i class="fa-solid fa-plus"></i>Add Project
                 </button>
             </div>
 
             <!-- New projects div -->
-            <div class="new-project-container active">
+            <div class="new-project-container">
                 <div class="project-item project-item-title">
                     <input
                         type="text"
