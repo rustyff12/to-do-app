@@ -88,10 +88,11 @@
                     <input
                         type="text"
                         id="title"
-                        placeholder="Project Name ..."
+                        placeholder="Project Name ... (required)"
                         name="title"
+                        required
                     />
-                    <button type="button">
+                    <button type="button" class="close-btn">
                         <i class="fa-solid fa-xmark"></i>
                     </button>
                 </div>
@@ -103,7 +104,7 @@
                         placeholder="Description ..."
                         name="description"
                     />
-                    <button type="button">
+                    <button type="button" class="close-btn">
                         <i class="fa-solid fa-xmark"></i>
                     </button>
                 </div>
@@ -111,16 +112,11 @@
                 <div class="project-item-priority">
                     <div class="priority-container">
                         <p>Priority:</p>
-                        <div>
-                            <label for="priority-yes">Yes</label>
-                            <input
-                                type="radio"
-                                id="priority-yes"
-                                name="priority"
-                            />
-                        </div>
+
+                        <label for="priority">Yes</label>
+                        <input type="checkbox" id="priority" name="priority" />
                     </div>
-                    <button type="button">
+                    <button type="button" class="close-btn">
                         <i class="fa-solid fa-xmark"></i>
                     </button>
                 </div>

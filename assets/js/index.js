@@ -6,11 +6,11 @@ const addButton = document.querySelector("#add-project");
 const cancelButton = document.querySelector("#cancel-btn");
 const form = document.querySelector("#form-data");
 const projectName = document.querySelector("#title");
+const add = document.querySelector("#add-new-project");
 
 let nextKey = 1;
 
 projectName.addEventListener("change", (e) => {
-    const add = document.querySelector("#add-new-project");
     const inputText = e.target.value;
     if (inputText !== "") {
         add.classList.remove("disabled-btn");
@@ -40,6 +40,16 @@ cancelButton.addEventListener("click", () => {
     const newProjectContainer = document.querySelector(
         ".new-project-container"
     );
+    const titleInput = document.querySelector(".project-item-title > input");
+    const titleDescription = document.querySelector(
+        ".project-item-description > input"
+    );
+    const priorityInput = document.querySelector("#priority");
+
+    priorityInput.checked = false;
+    titleInput.value = "";
+    titleDescription.value = "";
+
     newProjectContainer.classList.remove("active");
     addButton.classList.remove("hidden");
 });
@@ -78,6 +88,35 @@ document
         }
     });
 
+form.addEventListener("click", (e) => {
+    if (
+        e.target.classList.contains("close-btn") ||
+        e.target.closest(".close-btn")
+    ) {
+        const closeButton = e.target.closest(".close-btn");
+        if (closeButton) {
+            const projectItem = closeButton.closest(".project-item");
+            const projectPriority = closeButton.closest(
+                ".project-item-priority"
+            );
+            if (projectItem) {
+                const inputValue = projectItem.querySelector("input");
+
+                if (inputValue) {
+                    inputValue.value = "";
+
+                    if (projectItem.classList.contains("project-item-title")) {
+                        add.classList.add("disabled-btn");
+                    }
+                }
+            } else if (projectPriority) {
+                const priorityInput = document.querySelector("#priority");
+                priorityInput.checked = false;
+            }
+        }
+    }
+});
+
 form.addEventListener("submit", (e) => {
     e.preventDefault();
     const data = new FormData(form);
@@ -93,9 +132,9 @@ form.addEventListener("submit", (e) => {
             priority = entry[1];
         }
     }
-    console.log(
+    /* console.log(
         `Title: ${title}, Description: ${description}, Priority ${priority}`
-    );
+    ); */
     const newProject = new Projects(
         `${title}`,
         `${description}`,
@@ -105,30 +144,3 @@ form.addEventListener("submit", (e) => {
     );
     newProject.render();
 });
-
-/* const project1 = new Projects(
-    "This",
-    "is an example of a project where it has a long description, is an example of a project where it has a long description",
-    "a",
-    "project",
-    (nextKey += 1)
-); */
-/* const project2 = new Projects(
-    "This",
-    "is an example of a project where it has a long description, is an example of a project where it has a long description",
-    "a",
-    "project",
-    (nextKey += 1)
-); */
-/* project1.render();
-project2.render(); */
-
-/*
-const title = document.querySelector("#title").value;
-    const description = document.querySelector("#description").value;
-    const priority = document.querySelector()
-    console.log(``);
-    const key = nextKey + 1;
-    const newProject = new Projects(title, description, "", "", key);
-    newProject.render();
-*/

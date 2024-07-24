@@ -250,11 +250,19 @@ header {
     font-weight: 700;
 }
 
-.priority-container > div {
+.priority-container {
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: space-between;
     gap: 10px;
+}
+
+.priority-container > label {
+    margin-left: auto;
+}
+
+.priority-container > input {
+    cursor: pointer;
 }
 
 .project-item > input:focus {

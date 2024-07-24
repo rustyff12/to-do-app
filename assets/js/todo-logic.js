@@ -12,7 +12,6 @@ export default class Projects {
     render() {
         const projectUl = document.querySelector(".projects-container > ul");
         const newTask = document.createElement("li");
-
         // Sanitize user input
         const sanitizedTitle = DOMPurify.sanitize(this.title);
         const sanitizedDescription = DOMPurify.sanitize(this.description);
@@ -32,6 +31,11 @@ export default class Projects {
 
     `;
         projectUl.append(newTask);
+
+        if (this.priority !== "undefined") {
+            const addPriority = document.getElementById(this.key);
+            addPriority.classList.add("priority");
+        }
     }
 
     getDate() {
