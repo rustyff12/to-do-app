@@ -8,7 +8,7 @@ const form = document.querySelector("#form-data");
 const projectName = document.querySelector("#title");
 const add = document.querySelector("#add-new-project");
 
-let nextKey = 1;
+let nextKey = Number(document.querySelector(".project-info").id) || 1;
 
 projectName.addEventListener("change", (e) => {
     const inputText = e.target.value;
