@@ -8,7 +8,10 @@ const form = document.querySelector("#form-data");
 const projectName = document.querySelector("#title");
 const add = document.querySelector("#add-new-project");
 
-let nextKey = Number(document.querySelector(".project-info").id) || 1;
+let nextKey =
+    Projects.getAllProjects().length > 0
+        ? Math.max(...Projects.getAllProjects().map((p) => p.key))
+        : 0;
 
 projectName.addEventListener("change", (e) => {
     const inputText = e.target.value;
@@ -21,11 +24,7 @@ projectName.addEventListener("change", (e) => {
 
 menuButton.addEventListener("click", () => {
     const navContainer = document.querySelector(".nav-container");
-    if (navContainer.classList.contains("active")) {
-        navContainer.classList.remove("active");
-    } else {
-        navContainer.classList.add("active");
-    }
+    navContainer.classList.toggle("active");
 });
 
 addButton.addEventListener("click", () => {
@@ -63,11 +62,7 @@ document
             e.target.closest(".project-description")
         ) {
             const descriptionElement = e.target.closest(".project-description");
-            if (descriptionElement.classList.contains("expanded")) {
-                descriptionElement.classList.remove("expanded");
-            } else {
-                descriptionElement.classList.add("expanded");
-            }
+            descriptionElement.classList.toggle("expanded");
         }
 
         // remove project
@@ -82,6 +77,9 @@ document
                     const projectItem = projectInfo.closest("li");
                     if (projectItem) {
                         projectItem.remove();
+                        Projects.removeFromLocalStorage(
+                            parseInt(projectInfo.id, 10)
+                        );
                     }
                 }
             }
@@ -92,7 +90,6 @@ const clearInput = (input) => {
     input.value = "";
     const addButton = document.querySelector("#add-new-project");
     if (input.closest(".project-item-title")) {
-        console.log("here");
         addButton.classList.add("disabled-btn");
     }
 };
@@ -139,8 +136,75 @@ form.addEventListener("submit", (e) => {
         `${title}`,
         `${description}`,
         `${priority}`,
-        "",
         (nextKey += 1)
     );
     newProject.render();
+    newProject.saveToLocalStorage();
 });
+
+document.querySelector("#show-projects").addEventListener("click", () => {
+    updateProjectList("Projects");
+});
+document.querySelector("#show-today").addEventListener("click", () => {
+    updateProjectList("Today");
+});
+document.querySelector("#show-week").addEventListener("click", () => {
+    updateProjectList("Week");
+});
+
+const updateProjectList = (viewType) => {
+    const projectUl = document.querySelector(".projects-container > ul");
+    const showProjectsButton = document.querySelector("#show-projects");
+    const showTodayButton = document.querySelector("#show-today");
+    const showWeekButton = document.querySelector("#show-week");
+
+    // Clear the list
+    projectUl.innerHTML = "";
+
+    const projects = Projects.getAllProjects();
+    const today = new Date();
+    const sevenDaysAgo = new Date();
+    sevenDaysAgo.setDate(today.getDate() - 7);
+
+    let filteredProjects = [];
+
+    // Filter projects based on the viewType
+    if (viewType === "Today") {
+        filteredProjects = projects.filter((project) => {
+            const projectDate = new Date(project.date);
+            return projectDate.toDateString() === today.toDateString();
+        });
+        showTodayButton.classList.add("disabled-btn");
+        showProjectsButton.classList.remove("disabled-btn");
+        showWeekButton.classList.remove("disabled-btn");
+    } else if (viewType === "Week") {
+        filteredProjects = projects.filter((project) => {
+            const projectDate = new Date(project.date);
+            return projectDate >= sevenDaysAgo && projectDate <= today;
+        });
+        showWeekButton.classList.add("disabled-btn");
+        showProjectsButton.classList.remove("disabled-btn");
+        showTodayButton.classList.remove("disabled-btn");
+    } else if (viewType === "Projects") {
+        filteredProjects = projects;
+        showProjectsButton.classList.add("disabled-btn");
+        showTodayButton.classList.remove("disabled-btn");
+        showWeekButton.classList.remove("disabled-btn");
+    }
+
+    // Ensure projects are rendered and not duplicated
+    filteredProjects.forEach((projectData) => {
+        const projectElement = document.getElementById(projectData.key);
+        if (!projectElement) {
+            const project = new Projects(
+                projectData.title,
+                projectData.description,
+                projectData.priority,
+                projectData.key
+            );
+            project.render();
+        }
+    });
+
+    document.querySelector(".projects-container  > h2").textContent = viewType;
+};

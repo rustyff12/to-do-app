@@ -306,6 +306,14 @@ header {
     display: none;
 }
 
+#show-projects.disabled-btn,
+#show-today.disabled-btn,
+#show-week.disabled-btn {
+    pointer-events: none;
+    background-color: var(--accent-medium);
+    color: var(--secondary-dark);
+}
+
 @media screen and (min-width: 700px) {
     .button-menu {
         display: none;
