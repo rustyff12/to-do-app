@@ -88,32 +88,34 @@ document
         }
     });
 
+const clearInput = (input) => {
+    input.value = "";
+    const addButton = document.querySelector("#add-new-project");
+    if (input.closest(".project-item-title")) {
+        console.log("here");
+        addButton.classList.add("disabled-btn");
+    }
+};
+
+const uncheckedPriority = () => {
+    const priorityInput = document.querySelector("#priority");
+    priorityInput.checked = false;
+};
+
 form.addEventListener("click", (e) => {
-    if (
-        e.target.classList.contains("close-btn") ||
-        e.target.closest(".close-btn")
-    ) {
-        const closeButton = e.target.closest(".close-btn");
-        if (closeButton) {
-            const projectItem = closeButton.closest(".project-item");
-            const projectPriority = closeButton.closest(
-                ".project-item-priority"
-            );
-            if (projectItem) {
-                const inputValue = projectItem.querySelector("input");
+    const closeButton = e.target.closest(".close-btn");
+    if (!closeButton) return;
 
-                if (inputValue) {
-                    inputValue.value = "";
+    const projectItem = closeButton.closest(".project-item");
+    const projectPriority = closeButton.closest(".project-item-priority");
 
-                    if (projectItem.classList.contains("project-item-title")) {
-                        add.classList.add("disabled-btn");
-                    }
-                }
-            } else if (projectPriority) {
-                const priorityInput = document.querySelector("#priority");
-                priorityInput.checked = false;
-            }
+    if (projectItem) {
+        const inputValue = projectItem.querySelector("input");
+        if (inputValue) {
+            clearInput(inputValue);
         }
+    } else if (projectPriority) {
+        uncheckedPriority();
     }
 });
 
@@ -132,9 +134,7 @@ form.addEventListener("submit", (e) => {
             priority = entry[1];
         }
     }
-    /* console.log(
-        `Title: ${title}, Description: ${description}, Priority ${priority}`
-    ); */
+
     const newProject = new Projects(
         `${title}`,
         `${description}`,
